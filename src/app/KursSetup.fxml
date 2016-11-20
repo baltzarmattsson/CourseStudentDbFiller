@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.KursSetupController">
+   <children>
+      <GridPane layoutX="40.0" layoutY="143.0" prefHeight="500.0" prefWidth="350.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.0" minWidth="10.0" prefWidth="89.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="280.0" minWidth="10.0" prefWidth="122.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="280.0" minWidth="10.0" prefWidth="133.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="ID/Kurskod:" GridPane.rowIndex="2" />
+            <Label text="Kursnamn:" GridPane.rowIndex="3" />
+            <Label text="Poäng" GridPane.rowIndex="4" />
+            <Label text="Finns ej i DB" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <TextField fx:id="kodTextfield" promptText="Index - default 0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label text="Kolumnindex" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="poängTextfield" promptText="Index - default 2" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <TextField fx:id="namnTextfield" promptText="Index - default 1" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Label text="Exempel:" GridPane.rowIndex="7" />
+            <Label fx:id="exempelLabel" alignment="CENTER" prefHeight="17.0" prefWidth="396.0" GridPane.columnSpan="3" GridPane.rowIndex="8" />
+            <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
+              <buttons>
+                <Button mnemonicParsing="false" onAction="#handleSpara" text="Spara" ButtonBar.buttonData="LEFT" />
+                <Button mnemonicParsing="false" onAction="#handleAvbryt" text="Avbryt" ButtonBar.buttonData="RIGHT" />
+              </buttons>
+            </ButtonBar>
+            <CheckBox fx:id="kodCheckbox" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <CheckBox fx:id="namnCheckbox" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <CheckBox fx:id="poängCheckbox" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Button mnemonicParsing="false" onAction="#handleUppdateraExempel" prefHeight="27.0" prefWidth="142.0" text="Uppdatera exempel" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+            <Label text="Tabellnamn" />
+            <TextField fx:id="tablenameTextfield" prefHeight="27.0" prefWidth="364.0" promptText="default Kurs" GridPane.columnIndex="1" GridPane.columnSpan="2" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </GridPane>
+   </children>
+</AnchorPane>
