@@ -118,9 +118,9 @@ public class StudiedSetupController {
     
     private boolean isInputValid() {
 
-    	if ((isNumber(courseCodeTextfield.getText()) != -1 || courseCodeCheckbox.isSelected()) &&
-    			(isNumber(studentIdTextfield.getText()) != -1 || studentIdCheckbox.isSelected()) &&
-    			(isNumber(gradeTextfield.getText()) != -1 || gradeCheckbox.isSelected())) {
+    	if ((Utils.isNumber(courseCodeTextfield.getText(), this.dialogStage) != -1 || courseCodeCheckbox.isSelected()) &&
+    			(Utils.isNumber(studentIdTextfield.getText(), this.dialogStage) != -1 || studentIdCheckbox.isSelected()) &&
+    			(Utils.isNumber(gradeTextfield.getText(), this.dialogStage) != -1 || gradeCheckbox.isSelected())) {
     		
     		courseCodeColumnIndex = (courseCodeCheckbox.isSelected()) ? -1
     				: (courseCodeTextfield.getText().length() == 0) ? defaultCourseCodeColumnIndex
@@ -142,32 +142,32 @@ public class StudiedSetupController {
     	}
     }
     
-    private int isNumber(String toBeParsed) {
-
-		if (toBeParsed.length() == 0)
-			return -2;
-
-		if (Utils.isNumber(toBeParsed) == false) {
-			this.showAlert("Parsing fel, kolla siffrorna");
-			return -1;
-		}
-		if (Double.parseDouble(toBeParsed) > Integer.MAX_VALUE) {
-			this.showAlert("Värde > Integer.MAX_VALUE");
-			return -1;
-		}
-
-		return Integer.parseInt(toBeParsed);
-	}
-    
-    private void showAlert(String displayText) {
-		Alert alert = new Alert(AlertType.WARNING);
-		alert.initOwner(dialogStage);
-		alert.setTitle("Number error");
-		alert.setHeaderText("Number error");
-		alert.setContentText(displayText);
-
-		alert.showAndWait();
-	}
+//    private int isNumber(String toBeParsed) {
+//
+//		if (toBeParsed.length() == 0)
+//			return -2;
+//
+//		if (Utils.isNumber(toBeParsed) == false) {
+//			this.showAlert("Parsing fel, kolla siffrorna");
+//			return -1;
+//		}
+//		if (Double.parseDouble(toBeParsed) > Integer.MAX_VALUE) {
+//			this.showAlert("Värde > Integer.MAX_VALUE");
+//			return -1;
+//		}
+//
+//		return Integer.parseInt(toBeParsed);
+//	}
+//
+//    private void showAlert(String displayText) {
+//		Alert alert = new Alert(AlertType.WARNING);
+//		alert.initOwner(dialogStage);
+//		alert.setTitle("Number error");
+//		alert.setHeaderText("Number error");
+//		alert.setContentText(displayText);
+//
+//		alert.showAndWait();
+//	}
     
     
     

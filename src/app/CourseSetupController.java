@@ -122,9 +122,9 @@ public class CourseSetupController {
     
     private boolean isInputValid() {
 
-    	if ((isNumber(codeTextfield.getText()) != -1 || codeCheckbox.isSelected()) &&
-    			(isNumber(nameTextfield.getText()) != -1 || nameCheckbox.isSelected()) &&
-    			(isNumber(pointsTextfield.getText()) != -1 || pointsCheckbox.isSelected())) {
+    	if ((Utils.isNumber(codeTextfield.getText(), this.dialogStage) != -1 || codeCheckbox.isSelected()) &&
+    			(Utils.isNumber(nameTextfield.getText(), this.dialogStage) != -1 || nameCheckbox.isSelected()) &&
+    			(Utils.isNumber(pointsTextfield.getText(), this.dialogStage) != -1 || pointsCheckbox.isSelected())) {
     		
     		codeColumnIndex = (codeCheckbox.isSelected()) ? -1
     				: (codeTextfield.getText().length() == 0) ? defaultCodeColumnIndex
@@ -146,32 +146,32 @@ public class CourseSetupController {
     	}
     }
     
-	private void showAlert(String displayText) {
-		Alert alert = new Alert(AlertType.WARNING);
-		alert.initOwner(dialogStage);
-		alert.setTitle("Number error");
-		alert.setHeaderText("Number error");
-		alert.setContentText(displayText);
-
-		alert.showAndWait();
-	}
-	
-	private int isNumber(String toBeParsed) {
-
-		if (toBeParsed.length() == 0)
-			return -2;
-
-		if (Utils.isNumber(toBeParsed) == false) {
-			this.showAlert("Parsing error, check numbers");
-			return -1;
-		}
-		if (Double.parseDouble(toBeParsed) > Integer.MAX_VALUE) {
-			this.showAlert("Value > Integer.MAX_VALUE");
-			return -1;
-		}
-
-		return Integer.parseInt(toBeParsed);
-	}
+//	private void showAlert(String displayText) {
+//		Alert alert = new Alert(AlertType.WARNING);
+//		alert.initOwner(dialogStage);
+//		alert.setTitle("Number error");
+//		alert.setHeaderText("Number error");
+//		alert.setContentText(displayText);
+//
+//		alert.showAndWait();
+//	}
+//
+//	private int isNumber(String toBeParsed) {
+//
+//		if (toBeParsed.length() == 0)
+//			return -2;
+//
+//		if (Utils.isNumber(toBeParsed) == false) {
+//			this.showAlert("Parsing error, check numbers");
+//			return -1;
+//		}
+//		if (Double.parseDouble(toBeParsed) > Integer.MAX_VALUE) {
+//			this.showAlert("Value > Integer.MAX_VALUE");
+//			return -1;
+//		}
+//
+//		return Integer.parseInt(toBeParsed);
+//	}
 
 	
 }

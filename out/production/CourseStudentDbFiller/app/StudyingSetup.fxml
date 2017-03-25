@@ -36,25 +36,25 @@
             <Label text="Kurskod" GridPane.rowIndex="2" />
             <Label text="PNR" GridPane.rowIndex="3" />
             <Label text="Finns ej i DB" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="knrTextfield" promptText="Index - default 0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField fx:id="courseCodeTextbox" promptText="Index - default 0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <Label text="Kolumnindex" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField fx:id="pnrTextfield" promptText="Index - default 1" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <TextField fx:id="studentIdTextbox" promptText="Index - default 1" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <Label text="Exempel:" textOverrun="CLIP" GridPane.rowIndex="7">
                <font>
                   <Font name="Helvetica Oblique" size="13.0" />
                </font></Label>
-            <Label fx:id="exempelLabel" alignment="CENTER" prefHeight="17.0" prefWidth="396.0" text="| knr | pnr |" GridPane.columnSpan="3" GridPane.rowIndex="8" />
+            <Label fx:id="exampleLabel" alignment="CENTER" prefHeight="17.0" prefWidth="396.0" text="| knr | pnr |" GridPane.columnSpan="3" GridPane.rowIndex="8" />
             <ButtonBar prefHeight="35.0" prefWidth="139.0" GridPane.rowIndex="9">
               <buttons>
-                <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleSpara" text="Spara" ButtonBar.buttonData="LEFT" />
-                <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleAvbryt" text="Avbryt" ButtonBar.buttonData="RIGHT" />
+                <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleSave" text="Spara" ButtonBar.buttonData="LEFT" />
+                <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCancel" text="Avbryt" ButtonBar.buttonData="RIGHT" />
               </buttons>
             </ButtonBar>
-            <CheckBox fx:id="knrCheckbox" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <CheckBox fx:id="pnrCheckbox" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Button mnemonicParsing="false" onAction="#handleUppdateraExempel" prefHeight="27.0" prefWidth="142.0" text="Uppdatera exempel" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+            <CheckBox fx:id="courseCodeCheckbox" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <CheckBox fx:id="studentIdCheckbox" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" onAction="#handleUpdateExample" prefHeight="27.0" prefWidth="142.0" text="Uppdatera exempel" GridPane.columnSpan="2" GridPane.rowIndex="6" />
             <Label text="Tabelnamn" />
-            <TextField fx:id="tablenameTextfield" prefHeight="27.0" prefWidth="349.0" promptText="default Läser" GridPane.columnIndex="1" GridPane.columnSpan="2" />
+            <TextField fx:id="tableNameTextfield" prefHeight="27.0" prefWidth="349.0" promptText="default Läser" GridPane.columnIndex="1" GridPane.columnSpan="2" />
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

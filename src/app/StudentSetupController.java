@@ -138,10 +138,10 @@ public class StudentSetupController {
     
     private boolean isInputValid() {
 
-    	if ((isNumber(studentIdTextfield.getText()) != -1 || studentIdCheckbox.isSelected()) &&
-    			(isNumber(nameTextfield.getText()) != -1 || nameCheckbox.isSelected()) &&
-    			(isNumber(addressTextfield.getText()) != -1 || addressCheckbox.isSelected()) &&
-    			(isNumber(phoneNbrTextfield.getText()) != -1 || phoneNbrCheckbox.isSelected())) {
+    	if ((Utils.isNumber(studentIdTextfield.getText(), this.dialogStage) != -1 || studentIdCheckbox.isSelected()) &&
+    			(Utils.isNumber(nameTextfield.getText(), this.dialogStage) != -1 || nameCheckbox.isSelected()) &&
+    			(Utils.isNumber(addressTextfield.getText(), this.dialogStage) != -1 || addressCheckbox.isSelected()) &&
+    			(Utils.isNumber(phoneNbrTextfield.getText(), this.dialogStage) != -1 || phoneNbrCheckbox.isSelected())) {
     		
     		
     		studentIdColumnIndex = (studentIdCheckbox.isSelected()) ? -1
@@ -168,31 +168,31 @@ public class StudentSetupController {
     	}
     }
     
-	private void showAlert(String displayText) {
-		Alert alert = new Alert(AlertType.WARNING);
-		alert.initOwner(dialogStage);
-		alert.setTitle("Number error");
-		alert.setHeaderText("Number error");
-		alert.setContentText(displayText);
-
-		alert.showAndWait();
-	}
-	
-	private int isNumber(String toBeParsed) {
-
-		if (toBeParsed.length() == 0)
-			return -2;
-
-		if (Utils.isNumber(toBeParsed) == false) {
-			this.showAlert("Parsing error, check the numbers");
-			return -1;
-		}
-		if (Double.parseDouble(toBeParsed) > Integer.MAX_VALUE) {
-			this.showAlert("Value > Integer.MAX_VALUE");
-			return -1;
-		}
-
-		return Integer.parseInt(toBeParsed);
-	}
+//	private void showAlert(String displayText) {
+//		Alert alert = new Alert(AlertType.WARNING);
+//		alert.initOwner(dialogStage);
+//		alert.setTitle("Number error");
+//		alert.setHeaderText("Number error");
+//		alert.setContentText(displayText);
+//
+//		alert.showAndWait();
+//	}
+//
+//	private int isNumber(String toBeParsed) {
+//
+//		if (toBeParsed.length() == 0)
+//			return -2;
+//
+//		if (Utils.isNumber(toBeParsed) == false) {
+//			this.showAlert("Parsing error, check the numbers");
+//			return -1;
+//		}
+//		if (Double.parseDouble(toBeParsed) > Integer.MAX_VALUE) {
+//			this.showAlert("Value > Integer.MAX_VALUE");
+//			return -1;
+//		}
+//
+//		return Integer.parseInt(toBeParsed);
+//	}
 	
 }

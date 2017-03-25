@@ -100,8 +100,8 @@ public class StudyingSetupController {
     
     private boolean isInputValid() {
 
-    	if ((isNumber(courseCodeTextbox.getText()) != -1 || courseCodeCheckbox.isSelected()) &&
-    			(isNumber(studentIdTextbox.getText()) != -1 || studentIdCheckbox.isSelected())) {
+    	if ((Utils.isNumber(courseCodeTextbox.getText(), this.dialogStage) != -1 || courseCodeCheckbox.isSelected()) &&
+    			(Utils.isNumber(studentIdTextbox.getText(), this.dialogStage) != -1 || studentIdCheckbox.isSelected())) {
     		
     		courseCodeColumnIndex = (courseCodeCheckbox.isSelected()) ? -1
     				: (courseCodeTextbox.getText().length() == 0) ? defaultCourseCodeColumnIndex
@@ -119,39 +119,32 @@ public class StudyingSetupController {
     	}
     }
     
-    private int isNumber(String toBeParsed) {
-
-    	if (toBeParsed.length() == 0) {
-    		return -2;
-    	}
-    	
-		if (Utils.isNumber(toBeParsed) == false) {
-			this.showAlert("Parsing error, check the numbers");
-			return -1;
-		}
-		if (Double.parseDouble(toBeParsed) > Integer.MAX_VALUE) {
-			this.showAlert("Value > Integer.MAX_VALUE");
-			return -1;
-		}
-
-		return Integer.parseInt(toBeParsed);
-	}
-    
-    private void showAlert(String displayText) {
-		Alert alert = new Alert(AlertType.WARNING);
-		alert.initOwner(dialogStage);
-		alert.setTitle("Number error");
-		alert.setHeaderText("Number error");
-		alert.setContentText(displayText);
-
-		alert.showAndWait();
-	}
-    
-    
-    
-    
-    
-    
-    
-    
+//    private int isNumber(String toBeParsed) {
+//
+//    	if (toBeParsed.length() == 0) {
+//    		return -2;
+//    	}
+//
+//		if (Utils.isNumber(toBeParsed) == false) {
+//			this.showAlert("Parsing error, check the numbers");
+//			return -1;
+//		}
+//		if (Double.parseDouble(toBeParsed) > Integer.MAX_VALUE) {
+//			this.showAlert("Value > Integer.MAX_VALUE");
+//			return -1;
+//		}
+//
+//		return Integer.parseInt(toBeParsed);
+//	}
+//
+//    private void showAlert(String displayText) {
+//		Alert alert = new Alert(AlertType.WARNING);
+//		alert.initOwner(dialogStage);
+//		alert.setTitle("Number error");
+//		alert.setHeaderText("Number error");
+//		alert.setContentText(displayText);
+//
+//		alert.showAndWait();
+//	}
+        
 }

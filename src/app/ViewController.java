@@ -102,7 +102,7 @@ public class ViewController {
 	private CheckBox studiedToFileChkBox;
 	@FXML
 	private CheckBox studyingToFileChkBox;
-	private String saveDir = "";
+//	private String saveDir = "";
 
 	private ArrayList<String> firstNames = new ArrayList<String>();
 	private ArrayList<String> lastNames = new ArrayList<String>();
@@ -239,9 +239,9 @@ public class ViewController {
 		boolean firstLine = true;
 
 		BufferedWriter bw = null;
-		if ((numberOfStudentsWantedNummer = isNumber(numberOfStudentsWanted.getText())) != -1) {
+		if ((numberOfStudentsWantedNummer = Utils.isNumber(numberOfStudentsWanted.getText(), MainApp.getMainApp().getPrimaryStage())) != -1) {
 			if (studentToFileChkBox.isSelected()) {
-				fileName = saveDir + "/" + studentTableName + "Output.txt";
+				fileName = Utils.getSaveDir() + File.separator + studentTableName + "Output.txt";
 				try {
 					bw = new BufferedWriter(new FileWriter(new File(fileName)));
 
@@ -356,12 +356,12 @@ public class ViewController {
 		boolean firstLine = true;
 
 		BufferedWriter bw = null;
-		if ((numberOfCoursesWantedNummer = isNumber(numberOfCoursesWanted.getText())) != -1) {
+		if ((numberOfCoursesWantedNummer = Utils.isNumber(numberOfCoursesWanted.getText(), MainApp.getMainApp().getPrimaryStage())) != -1) {
 			if (courseToFileChkBox.isSelected()) {
 				
 				coursePoints.clear();
 				
-				fileName = saveDir + "/" + courseTableName + "Output.txt";
+				fileName = Utils.getSaveDir() + File.separator + courseTableName + "Output.txt";
 				try {
 					bw = new BufferedWriter(new FileWriter(new File(fileName)));
 				} catch (IOException e) {
@@ -467,10 +467,10 @@ public class ViewController {
 		boolean firstLine = true;
 
 		BufferedWriter bw = null;
-		if (((studLäserFrånNummer = isNumber(studLäserFrån.getText())) != -1)
-				&& (studLäserTillNummer = isNumber(studLäserTill.getText())) != -1
-				&& (numberOfStudentsWantedNummer = isNumber(numberOfStudentsWanted.getText())) != -1
-				&& (numberOfCoursesWantedNummer = isNumber(numberOfCoursesWanted.getText())) != -1) {
+		if (((studLäserFrånNummer = Utils.isNumber(studLäserFrån.getText(), MainApp.getMainApp().getPrimaryStage())) != -1)
+				&& (studLäserTillNummer = Utils.isNumber(studLäserTill.getText(), MainApp.getMainApp().getPrimaryStage())) != -1
+				&& (numberOfStudentsWantedNummer = Utils.isNumber(numberOfStudentsWanted.getText(), MainApp.getMainApp().getPrimaryStage())) != -1
+				&& (numberOfCoursesWantedNummer = Utils.isNumber(numberOfCoursesWanted.getText(), MainApp.getMainApp().getPrimaryStage())) != -1) {
 
 			if (studLäserFrånNummer > studLäserTillNummer) {
 				showAlert("Från måste vara större än Till");
@@ -478,7 +478,7 @@ public class ViewController {
 			}
 
 			if (studyingToFileChkBox.isSelected()) {
-				fileName = saveDir + "/" + studyingTableName + "Output.txt";
+				fileName = Utils.getSaveDir() + File.separator + studyingTableName + "Output.txt";
 				try {
 					bw = new BufferedWriter(new FileWriter(new File(fileName)));
 
@@ -575,10 +575,10 @@ public class ViewController {
 		boolean firstLine = true;
 
 		BufferedWriter bw = null;
-		if (((studLästFrånNummer = isNumber(studLästFrån.getText())) != -1)
-				&& (studLästTillNummer = isNumber(studLästTill.getText())) != -1
-				&& (numberOfStudentsWantedNummer = isNumber(numberOfStudentsWanted.getText())) != -1
-				&& (numberOfCoursesWantedNummer = isNumber(numberOfCoursesWanted.getText())) != -1) {
+		if (((studLästFrånNummer = Utils.isNumber(studLästFrån.getText(), MainApp.getMainApp().getPrimaryStage())) != -1)
+				&& (studLästTillNummer = Utils.isNumber(studLästTill.getText(), MainApp.getMainApp().getPrimaryStage())) != -1
+				&& (numberOfStudentsWantedNummer = Utils.isNumber(numberOfStudentsWanted.getText(), MainApp.getMainApp().getPrimaryStage())) != -1
+				&& (numberOfCoursesWantedNummer = Utils.isNumber(numberOfCoursesWanted.getText(), MainApp.getMainApp().getPrimaryStage())) != -1) {
 
 			if (studLästFrånNummer > studLästTillNummer) {
 				showAlert("Från måste vara större än Till");
@@ -586,7 +586,7 @@ public class ViewController {
 			}
 
 			if (studiedToFileChkBox.isSelected()) {
-				fileName = saveDir + "/" + studiedTableName + "Output.txt";
+				fileName = Utils.getSaveDir() + File.separator + studiedTableName + "Output.txt";
 				try {
 					bw = new BufferedWriter(new FileWriter(new File(fileName)));
 
@@ -673,23 +673,23 @@ public class ViewController {
 		}
 	}
 
-	private int isNumber(String toBeParsed) {
-
-		if (toBeParsed.length() == 0)
-			return -1;
-
-		if (Utils.isNumber(toBeParsed) == false) {
-			this.showAlert("Parsing fel, kolla siffrorna");
-			return -1;
-		}
-		if (Double.parseDouble(toBeParsed) > Integer.MAX_VALUE) {
-			this.showAlert("Värde > Integer.MAX_VALUE");
-			return -1;
-		}
-
-		return Integer.parseInt(toBeParsed);
-	}
-
+//	private int isNumber(String toBeParsed) {
+//
+//		if (toBeParsed.length() == 0)
+//			return -1;
+//
+//		if (Utils.isNumber(toBeParsed) == false) {
+//			this.showAlert("Parsing fel, kolla siffrorna");
+//			return -1;
+//		}
+//		if (Double.parseDouble(toBeParsed) > Integer.MAX_VALUE) {
+//			this.showAlert("Värde > Integer.MAX_VALUE");
+//			return -1;
+//		}
+//
+//		return Integer.parseInt(toBeParsed);
+//	}
+//
 	private void showAlert(String displayText) {
 		Alert alert = new Alert(AlertType.WARNING);
 		alert.initOwner(MainApp.getMainApp().getPrimaryStage());
@@ -786,53 +786,57 @@ public class ViewController {
 
 	@FXML
 	private void toFileStudent() {
-		this.setSaveDir("student");
+		if (Utils.setSaveDir() == false)
+			this.studentToFileChkBox.setSelected(false);
 	}
 	
 	@FXML
 	private void toFileCourse() {
-		this.setSaveDir("course");
+		if (Utils.setSaveDir() == false)
+			this.courseToFileChkBox.setSelected(false);
 	}
 	
 	@FXML
 	private void toFileStudying() {
-		this.setSaveDir("studying");
+		if (Utils.setSaveDir() == false)
+			this.studyingToFileChkBox.setSelected(false);
 	}
 	
 	@FXML
 	private void toFileStudied() {
-		this.setSaveDir("studied");
+		if (Utils.setSaveDir() == false)
+			this.studiedToFileChkBox.setSelected(false);
 	}
 	
 	
-	private void setSaveDir(String source) {
-		if (this.saveDir.length() > 0)
-			return; // then dir is already set
-		// this.saveDir = dir;
-		DirectoryChooser chooser = new DirectoryChooser();
-		chooser.setTitle("Välj sparmapp");
-
-		try {
-			File selectedDirectory = chooser.showDialog(MainApp.getMainApp().getPrimaryStage());
-			if (selectedDirectory != null) {
-				// return selectedDirectory.getAbsolutePath();
-				this.saveDir = selectedDirectory.getAbsolutePath();
-				System.out.println(this.saveDir);
-			} else {
-				switch (source) {
-				case "student": studentToFileChkBox.setSelected(false);
-					break;
-				case "course": courseToFileChkBox.setSelected(false);
-					break;
-				case "studying": studyingToFileChkBox.setSelected(false);
-					break;
-				case "studied": studiedToFileChkBox.setSelected(false);
-					break;
-				}
-			}
-		} catch (IllegalArgumentException e) {
-			System.out.println("fel");
-		}
-	}
+//	public static String setSaveDir(String source) {
+//		if (this.saveDir.length() > 0)
+//			return; // then dir is already set
+//		// this.saveDir = dir;
+//		DirectoryChooser chooser = new DirectoryChooser();
+//		chooser.setTitle("Välj sparmapp");
+//
+//		try {
+//			File selectedDirectory = chooser.showDialog(MainApp.getMainApp().getPrimaryStage());
+//			if (selectedDirectory != null) {
+//				// return selectedDirectory.getAbsolutePath();
+//				this.saveDir = selectedDirectory.getAbsolutePath();
+//				System.out.println(this.saveDir);
+//			} else {
+//				switch (source) {
+//				case "student": studentToFileChkBox.setSelected(false);
+//					break;
+//				case "course": courseToFileChkBox.setSelected(false);
+//					break;
+//				case "studying": studyingToFileChkBox.setSelected(false);
+//					break;
+//				case "studied": studiedToFileChkBox.setSelected(false);
+//					break;
+//				}
+//			}
+//		} catch (IllegalArgumentException e) {
+//			System.out.println("fel");
+//		}
+//	}
 
 }
