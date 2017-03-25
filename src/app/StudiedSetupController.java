@@ -11,33 +11,33 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
-public class LästSetupController {
+public class StudiedSetupController {
 
 	@FXML
-	private CheckBox knrCheckbox;
+	private CheckBox courseCodeCheckbox;
 	@FXML
-	private CheckBox pnrCheckbox;
+	private CheckBox studentIdCheckbox;
 	@FXML
-	private CheckBox betygCheckbox;
+	private CheckBox gradeCheckbox;
 	
 	@FXML
-	private TextField knrTextfield;
-	private int knrIndex = 0;
-	private int defaultKnrIndex = 0;
+	private TextField courseCodeTextfield;
+	private int courseCodeColumnIndex = 0;
+	private int defaultCourseCodeColumnIndex = 0;
 	@FXML
-	private TextField pnrTextfield;
-	private int pnrIndex = 1;
-	private int defaultPnrIndex = 1;
+	private TextField studentIdTextfield;
+	private int studentIdColumnIndex = 1;
+	private int defaultStudentIdColumnIndex = 1;
 	@FXML
-	private TextField betygTextfield;
-	private int betygIndex = 2;
-	private int defaultBetygIndex = 2;
+	private TextField gradeTextfield;
+	private int gradeColumnIndex = 2;
+	private int defaultGradeColumnIndex = 2;
 	
 	@FXML
-	private TextField tablenameTextfield;
+	private TextField tableNameTextfield;
 	
 	@FXML
-	private Label exempelLabel;
+	private Label exampleLabel;
 
 	private HashMap<Integer, String> studiedIndexes = new HashMap<Integer, String>();
 	
@@ -52,9 +52,9 @@ public class LästSetupController {
      */
     @FXML
     private void initialize() {
-		studiedIndexes.put(knrIndex, "knr"); // DONT CHANGE NAMES
-		studiedIndexes.put(pnrIndex, "pnr");
-		studiedIndexes.put(betygIndex, "betyg");
+		studiedIndexes.put(courseCodeColumnIndex, "knr"); // DONT CHANGE NAMES
+		studiedIndexes.put(studentIdColumnIndex, "pnr");
+		studiedIndexes.put(gradeColumnIndex, "betyg");
     }
     
     /**
@@ -75,37 +75,37 @@ public class LästSetupController {
     } 
     
     public String getTableName() {
-    	String tableName = this.tablenameTextfield.getText();
+    	String tableName = this.tableNameTextfield.getText();
     	return (tableName.length() > 0) ? tableName : "Läst";
     }
     
 	@FXML
-	private void handleSpara() {
+	private void handleSave() {
 		if (isInputValid()) {
 			studiedIndexes = new HashMap<Integer, String>();
-			studiedIndexes.put(knrIndex, "knr"); // DONT CHANGE NAMES
-			studiedIndexes.put(pnrIndex, "pnr");
-			studiedIndexes.put(betygIndex, "betyg");
+			studiedIndexes.put(courseCodeColumnIndex, "knr"); // DONT CHANGE NAMES
+			studiedIndexes.put(studentIdColumnIndex, "pnr");
+			studiedIndexes.put(gradeColumnIndex, "betyg");
 			okClicked = true;
 			dialogStage.close();
 		}
 	}
     
     @FXML
-    private void handleAvbryt() {
+    private void handleCancel() {
     	dialogStage.close();
     }
     
     @FXML
-    private void handleUppdateraExempel() {
-    	exempelLabel.setText("");
+    private void handleUpdateExample() {
+    	exampleLabel.setText("");
     	
     	if (isInputValid()) {
     		
     		studiedIndexes = new HashMap<Integer, String>();
-    		studiedIndexes.put(knrIndex, "knr"); // DONT CHANGE NAMES
-    		studiedIndexes.put(pnrIndex, "pnr");
-    		studiedIndexes.put(betygIndex, "betyg");
+    		studiedIndexes.put(courseCodeColumnIndex, "knr"); // DONT CHANGE NAMES
+    		studiedIndexes.put(studentIdColumnIndex, "pnr");
+    		studiedIndexes.put(gradeColumnIndex, "betyg");
     	}
 
     	String colNamesString = "";
@@ -113,29 +113,29 @@ public class LästSetupController {
     		colNamesString += " | " + studiedIndexes.get(i);
     	}
     	colNamesString += " | ";
-    	exempelLabel.setText(colNamesString);
+    	exampleLabel.setText(colNamesString);
     }
     
     private boolean isInputValid() {
 
-    	if ((isNumber(knrTextfield.getText()) != -1 || knrCheckbox.isSelected()) &&
-    			(isNumber(pnrTextfield.getText()) != -1 || pnrCheckbox.isSelected()) &&
-    			(isNumber(betygTextfield.getText()) != -1 || betygCheckbox.isSelected())) {
+    	if ((isNumber(courseCodeTextfield.getText()) != -1 || courseCodeCheckbox.isSelected()) &&
+    			(isNumber(studentIdTextfield.getText()) != -1 || studentIdCheckbox.isSelected()) &&
+    			(isNumber(gradeTextfield.getText()) != -1 || gradeCheckbox.isSelected())) {
     		
-    		knrIndex = (knrCheckbox.isSelected()) ? -1 
-    				: (knrTextfield.getText().length() == 0) ? defaultKnrIndex
-    				: Integer.parseInt(knrTextfield.getText());
-    		pnrIndex = (pnrCheckbox.isSelected()) ? -2 
-    				: (pnrTextfield.getText().length() == 0) ? defaultPnrIndex
-    				: Integer.parseInt(pnrTextfield.getText());
-    		betygIndex = (betygCheckbox.isSelected()) ? -3 
-    				: (betygTextfield.getText().length() == 0) ? defaultBetygIndex
-    				: Integer.parseInt(betygTextfield.getText());
+    		courseCodeColumnIndex = (courseCodeCheckbox.isSelected()) ? -1
+    				: (courseCodeTextfield.getText().length() == 0) ? defaultCourseCodeColumnIndex
+    				: Integer.parseInt(courseCodeTextfield.getText());
+    		studentIdColumnIndex = (studentIdCheckbox.isSelected()) ? -2
+    				: (studentIdTextfield.getText().length() == 0) ? defaultStudentIdColumnIndex
+    				: Integer.parseInt(studentIdTextfield.getText());
+    		gradeColumnIndex = (gradeCheckbox.isSelected()) ? -3
+    				: (gradeTextfield.getText().length() == 0) ? defaultGradeColumnIndex
+    				: Integer.parseInt(gradeTextfield.getText());
     		
     		numberOfColumnsUnwanted = 0;
-    		if (knrCheckbox.isSelected()) numberOfColumnsUnwanted++;
-    		if (pnrCheckbox.isSelected()) numberOfColumnsUnwanted++;
-    		if (betygCheckbox.isSelected()) numberOfColumnsUnwanted++;
+    		if (courseCodeCheckbox.isSelected()) numberOfColumnsUnwanted++;
+    		if (studentIdCheckbox.isSelected()) numberOfColumnsUnwanted++;
+    		if (gradeCheckbox.isSelected()) numberOfColumnsUnwanted++;
     		return true;
     	} else {
     		return false;

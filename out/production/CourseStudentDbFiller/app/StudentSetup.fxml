@@ -10,9 +10,8 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.LäserSetupController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.StudentSetupController">
    <children>
       <GridPane layoutX="40.0" layoutY="143.0" prefHeight="500.0" prefWidth="350.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -33,28 +32,31 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Kurskod" GridPane.rowIndex="2" />
-            <Label text="PNR" GridPane.rowIndex="3" />
+            <Label text="ID/PNR" GridPane.rowIndex="2" />
+            <Label text="Tfnnummer" GridPane.rowIndex="6" />
+            <Label text="Namn" GridPane.rowIndex="4" />
+            <Label text="Adress" GridPane.rowIndex="5" />
             <Label text="Finns ej i DB" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="knrTextfield" promptText="Index - default 0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField fx:id="pnrTextfield" promptText="Index - default 0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <Label text="Kolumnindex" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField fx:id="pnrTextfield" promptText="Index - default 1" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Label text="Exempel:" textOverrun="CLIP" GridPane.rowIndex="7">
-               <font>
-                  <Font name="Helvetica Oblique" size="13.0" />
-               </font></Label>
-            <Label fx:id="exempelLabel" alignment="CENTER" prefHeight="17.0" prefWidth="396.0" text="| knr | pnr |" GridPane.columnSpan="3" GridPane.rowIndex="8" />
+            <TextField fx:id="tfnnummerTextfield" promptText="Index - default 3" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <TextField fx:id="adressTextfield" promptText="Index - default 2" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <TextField fx:id="namnTextfield" promptText="Index - default 1" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Label fx:id="exempelLabel" alignment="CENTER" prefHeight="17.0" prefWidth="396.0" text="| pnr | namn | adress | tfnnummer |" GridPane.columnSpan="3" GridPane.rowIndex="8" />
             <ButtonBar prefHeight="35.0" prefWidth="139.0" GridPane.rowIndex="9">
               <buttons>
                 <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleSpara" text="Spara" ButtonBar.buttonData="LEFT" />
                 <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleAvbryt" text="Avbryt" ButtonBar.buttonData="RIGHT" />
               </buttons>
             </ButtonBar>
-            <CheckBox fx:id="knrCheckbox" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <CheckBox fx:id="pnrCheckbox" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Button mnemonicParsing="false" onAction="#handleUppdateraExempel" prefHeight="27.0" prefWidth="142.0" text="Uppdatera exempel" GridPane.columnSpan="2" GridPane.rowIndex="6" />
-            <Label text="Tabelnamn" />
-            <TextField fx:id="tablenameTextfield" prefHeight="27.0" prefWidth="349.0" promptText="default Läser" GridPane.columnIndex="1" GridPane.columnSpan="2" />
+            <CheckBox fx:id="pnrCheckbox" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <CheckBox fx:id="tfnnummerCheckbox" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <CheckBox fx:id="adressCheckbox" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <CheckBox fx:id="namnCheckbox" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Button mnemonicParsing="false" onAction="#handleUppdateraExempel" prefHeight="27.0" prefWidth="142.0" text="Uppdatera exempel" GridPane.columnSpan="2" GridPane.rowIndex="7" />
+            <Label text="Tabellnamn" />
+            <TextField fx:id="tablenameTextfield" prefHeight="27.0" prefWidth="263.0" promptText="default Student" GridPane.columnIndex="1" GridPane.columnSpan="2" />
+            <CheckBox fx:id="pnrIs12Digits" mnemonicParsing="false" prefHeight="18.0" prefWidth="241.0" text="PNR är 12 siffror" GridPane.columnSpan="2" GridPane.rowIndex="3" />
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

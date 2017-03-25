@@ -14,39 +14,39 @@ import javafx.stage.Stage;
 public class StudentSetupController {
 
 	@FXML
-	private CheckBox pnrCheckbox;
+	private CheckBox studentIdCheckbox;
 	@FXML
-	private CheckBox namnCheckbox;
+	private CheckBox nameCheckbox;
 	@FXML
-	private CheckBox adressCheckbox;
+	private CheckBox addressCheckbox;
 	@FXML
-	private CheckBox tfnnummerCheckbox;
+	private CheckBox phoneNbrCheckbox;
 	
 	@FXML
-	private TextField pnrTextfield;
-	private int pnrIndex = 0;
-	private int defaultPnrIndex = 0;
+	private TextField studentIdTextfield;
+	private int studentIdColumnIndex = 0;
+	private int defaultStudentIdColumnIndex = 0;
 	@FXML
-	private TextField namnTextfield;
-	private int namnIndex = 1;
-	private int defaultNamnIndex = 1;
+	private TextField nameTextfield;
+	private int nameColumnIndex = 1;
+	private int defaultNameColumnIndex = 1;
 	@FXML
-	private TextField adressTextfield;
-	private int adressIndex = 2;
-	private int defaultAdressIndex = 2;
+	private TextField addressTextfield;
+	private int addressColumnIndex = 2;
+	private int defaultAddressColumnIndex = 2;
 	@FXML
-	private TextField tfnnummerTextfield;
-	private int tfnnummerIndex = 3;
-	private int defaultTfnnummerIndex = 3;
+	private TextField phoneNbrTextfield;
+	private int phoneNbrColumnIndex = 3;
+	private int defaultPhoneNbrColumnIndex = 3;
 	
 	@FXML
-	private TextField tablenameTextfield;
+	private TextField tableNameTextfield;
 	
 	@FXML
-	private Label exempelLabel;
+	private Label exampleLabel;
 
 	@FXML
-	private CheckBox pnrIs12Digits;
+	private CheckBox studentIdIsTwelveDigits;
 	
 	private HashMap<Integer, String> studentIndexes = new HashMap<Integer, String>();
 	
@@ -62,10 +62,10 @@ public class StudentSetupController {
      */
     @FXML
     private void initialize() {
-		studentIndexes.put(pnrIndex, "pnr"); // DONT CHANGE NAMES
-		studentIndexes.put(namnIndex, "namn");
-		studentIndexes.put(adressIndex, "adress");
-		studentIndexes.put(tfnnummerIndex, "tfnnr");
+		studentIndexes.put(studentIdColumnIndex, "pnr"); // DONT CHANGE NAMES
+		studentIndexes.put(nameColumnIndex, "namn");
+		studentIndexes.put(addressColumnIndex, "adress");
+		studentIndexes.put(phoneNbrColumnIndex, "tfnnr");
     }
     
     /**
@@ -86,22 +86,22 @@ public class StudentSetupController {
     }
     
     public String getTableName() {
-    	String tableName = this.tablenameTextfield.getText();
+    	String tableName = this.tableNameTextfield.getText();
     	return (tableName.length() > 0) ? tableName : "Student";
     }
     
     @FXML
-    private void handleSpara() {
+    private void handleSave() {
     	
     	if (isInputValid()) {
     		
     		studentIndexes = new HashMap<Integer, String>();
     		
-    		studentIndexes.put(pnrIndex, "pnr"); // DONT CHANGE NAMES
-    		studentIndexes.put(namnIndex, "namn");
-    		studentIndexes.put(adressIndex, "adress");
-    		studentIndexes.put(tfnnummerIndex, "tfnnr");
-    		studentIndexes.put(-1337, pnrIs12Digits.isSelected() + "");
+    		studentIndexes.put(studentIdColumnIndex, "pnr"); // DONT CHANGE NAMES
+    		studentIndexes.put(nameColumnIndex, "namn");
+    		studentIndexes.put(addressColumnIndex, "adress");
+    		studentIndexes.put(phoneNbrColumnIndex, "tfnnr");
+    		studentIndexes.put(-1337, studentIdIsTwelveDigits.isSelected() + "");
     		
     		okClicked = true;
     		dialogStage.close();
@@ -110,22 +110,22 @@ public class StudentSetupController {
     }
     
     @FXML
-    private void handleAvbryt() {
+    private void handleCancel() {
     	dialogStage.close();
     }
     
     @FXML
-    private void handleUppdateraExempel() {
-    	exempelLabel.setText("");
+    private void handleUpdateExample() {
+    	exampleLabel.setText("");
     	
     	if (isInputValid()) {
     		
     		studentIndexes = new HashMap<Integer, String>();
-    		studentIndexes.put(pnrIndex, "pnr"); // DONT CHANGE NAMES
-    		studentIndexes.put(namnIndex, "namn");
-    		studentIndexes.put(adressIndex, "adress");
-    		studentIndexes.put(tfnnummerIndex, "tfnnr");
-    		studentIndexes.put(-1337, pnrIs12Digits.isSelected() + "");
+    		studentIndexes.put(studentIdColumnIndex, "pnr"); // DONT CHANGE NAMES
+    		studentIndexes.put(nameColumnIndex, "namn");
+    		studentIndexes.put(addressColumnIndex, "adress");
+    		studentIndexes.put(phoneNbrColumnIndex, "tfnnr");
+    		studentIndexes.put(-1337, studentIdIsTwelveDigits.isSelected() + "");
     	}
 
     	String colNamesString = "";
@@ -133,35 +133,35 @@ public class StudentSetupController {
     		colNamesString += " | " + studentIndexes.get(i);
     	}
     	colNamesString += " | ";
-    	exempelLabel.setText(colNamesString);
+    	exampleLabel.setText(colNamesString);
     }
     
     private boolean isInputValid() {
 
-    	if ((isNumber(pnrTextfield.getText()) != -1 || pnrCheckbox.isSelected()) &&
-    			(isNumber(namnTextfield.getText()) != -1 || namnCheckbox.isSelected()) &&
-    			(isNumber(adressTextfield.getText()) != -1 || adressCheckbox.isSelected()) && 
-    			(isNumber(tfnnummerTextfield.getText()) != -1 || tfnnummerCheckbox.isSelected())) {
+    	if ((isNumber(studentIdTextfield.getText()) != -1 || studentIdCheckbox.isSelected()) &&
+    			(isNumber(nameTextfield.getText()) != -1 || nameCheckbox.isSelected()) &&
+    			(isNumber(addressTextfield.getText()) != -1 || addressCheckbox.isSelected()) &&
+    			(isNumber(phoneNbrTextfield.getText()) != -1 || phoneNbrCheckbox.isSelected())) {
     		
     		
-    		pnrIndex = (pnrCheckbox.isSelected()) ? -1 
-    				: (pnrTextfield.getText().length() == 0) ? defaultPnrIndex 
-    				: Integer.parseInt(pnrTextfield.getText());
-    		namnIndex = (namnCheckbox.isSelected()) ? -2 
-    				: (namnTextfield.getText().length() == 0) ? defaultNamnIndex
-    				: Integer.parseInt(namnTextfield.getText());
-    		adressIndex = (adressCheckbox.isSelected()) ? -3 
-    				: (adressTextfield.getText().length() == 0) ? defaultAdressIndex
-    				: Integer.parseInt(adressTextfield.getText());
-    		tfnnummerIndex = (tfnnummerCheckbox.isSelected()) ? -4 
-    				: (tfnnummerTextfield.getText().length() == 0) ? defaultTfnnummerIndex
-    				: Integer.parseInt(tfnnummerTextfield.getText());
+    		studentIdColumnIndex = (studentIdCheckbox.isSelected()) ? -1
+    				: (studentIdTextfield.getText().length() == 0) ? defaultStudentIdColumnIndex
+    				: Integer.parseInt(studentIdTextfield.getText());
+    		nameColumnIndex = (nameCheckbox.isSelected()) ? -2
+    				: (nameTextfield.getText().length() == 0) ? defaultNameColumnIndex
+    				: Integer.parseInt(nameTextfield.getText());
+    		addressColumnIndex = (addressCheckbox.isSelected()) ? -3
+    				: (addressTextfield.getText().length() == 0) ? defaultAddressColumnIndex
+    				: Integer.parseInt(addressTextfield.getText());
+    		phoneNbrColumnIndex = (phoneNbrCheckbox.isSelected()) ? -4
+    				: (phoneNbrTextfield.getText().length() == 0) ? defaultPhoneNbrColumnIndex
+    				: Integer.parseInt(phoneNbrTextfield.getText());
     		
     		numberOfColumnsUnwanted = 0;
-    		if (pnrCheckbox.isSelected()) numberOfColumnsUnwanted++;
-    		if (namnCheckbox.isSelected()) numberOfColumnsUnwanted++;
-    		if (adressCheckbox.isSelected()) numberOfColumnsUnwanted++;
-    		if (tfnnummerCheckbox.isSelected()) numberOfColumnsUnwanted++;
+    		if (studentIdCheckbox.isSelected()) numberOfColumnsUnwanted++;
+    		if (nameCheckbox.isSelected()) numberOfColumnsUnwanted++;
+    		if (addressCheckbox.isSelected()) numberOfColumnsUnwanted++;
+    		if (phoneNbrCheckbox.isSelected()) numberOfColumnsUnwanted++;
     		return true;
     	} else {
     		return false;
@@ -184,11 +184,11 @@ public class StudentSetupController {
 			return -2;
 
 		if (Utils.isNumber(toBeParsed) == false) {
-			this.showAlert("Parsing fel, kolla siffrorna");
+			this.showAlert("Parsing error, check the numbers");
 			return -1;
 		}
 		if (Double.parseDouble(toBeParsed) > Integer.MAX_VALUE) {
-			this.showAlert("Värde > Integer.MAX_VALUE");
+			this.showAlert("Value > Integer.MAX_VALUE");
 			return -1;
 		}
 

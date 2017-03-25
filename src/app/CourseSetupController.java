@@ -11,33 +11,33 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
-public class KursSetupController {
+public class CourseSetupController {
 
 	@FXML
-	private CheckBox kodCheckbox;
+	private CheckBox codeCheckbox;
 	@FXML
-	private CheckBox namnCheckbox;
+	private CheckBox nameCheckbox;
 	@FXML
-	private CheckBox poängCheckbox;
+	private CheckBox pointsCheckbox;
 	
 	@FXML
-	private TextField kodTextfield;
-	private int kodIndex = 0;
-	private int defaultkodIndex = 0;
+	private TextField codeTextfield;
+	private int codeColumnIndex = 0;
+	private int defaultCodeColumnIndex = 0;
 	@FXML
-	private TextField namnTextfield;
-	private int namnIndex = 1;
-	private int defaultNamnIndex = 1;
+	private TextField nameTextfield;
+	private int nameColumnIndex = 1;
+	private int defaultNameColumnIndex = 1;
 	@FXML
-	private TextField poängTextfield;
-	private int poängIndex = 2;
-	private int defaultPoängIndex = 2;
+	private TextField pointsTextfield;
+	private int pointsColumnIndex = 2;
+	private int deafultPointsColumnIndex = 2;
 	
 	@FXML
-	private TextField tablenameTextfield;
+	private TextField tableNameTextfield;
 	
 	@FXML
-	private Label exempelLabel;
+	private Label exampleLabel;
 	
 	private HashMap<Integer, String> courseIndexes = new HashMap<Integer, String>();
 	
@@ -51,9 +51,9 @@ public class KursSetupController {
      */
     @FXML
     private void initialize() {
-		courseIndexes.put(kodIndex, "knr"); // DONT CHANGE NAMES
-		courseIndexes.put(namnIndex, "namn");
-		courseIndexes.put(poängIndex, "poäng");
+		courseIndexes.put(codeColumnIndex, "knr"); // DONT CHANGE NAMES
+		courseIndexes.put(nameColumnIndex, "namn");
+		courseIndexes.put(pointsColumnIndex, "poäng");
     }
     
     /**
@@ -74,20 +74,20 @@ public class KursSetupController {
     }
     
     public String getTableName() {
-    	String tableName = this.tablenameTextfield.getText();
+    	String tableName = this.tableNameTextfield.getText();
     	return (tableName.length() > 0) ? tableName : "Kurs";
     }
     
     @FXML
-    private void handleSpara() {
+    private void handleSave() {
     	
     	if (isInputValid()) {
     		
     		courseIndexes = new HashMap<Integer, String>();
     		
-    		courseIndexes.put(kodIndex, "knr"); // DONT CHANGE NAMES
-    		courseIndexes.put(namnIndex, "namn");
-    		courseIndexes.put(poängIndex, "poäng");
+    		courseIndexes.put(codeColumnIndex, "knr"); // DONT CHANGE NAMES
+    		courseIndexes.put(nameColumnIndex, "namn");
+    		courseIndexes.put(pointsColumnIndex, "poäng");
     		
     		okClicked = true;
     		dialogStage.close();
@@ -96,20 +96,20 @@ public class KursSetupController {
     }
     
     @FXML
-    private void handleAvbryt() {
+    private void handleCancel() {
     	dialogStage.close();
     }
     
     @FXML
-    private void handleUppdateraExempel() {
-    	exempelLabel.setText("");
+    private void handleUpdateExample() {
+    	exampleLabel.setText("");
     	
     	if (isInputValid()) {
     		
     		courseIndexes = new HashMap<Integer, String>();
-    		courseIndexes.put(kodIndex, "knr"); // DONT CHANGE NAMES
-    		courseIndexes.put(namnIndex, "namn");
-    		courseIndexes.put(poängIndex, "poäng");
+    		courseIndexes.put(codeColumnIndex, "knr"); // DONT CHANGE NAMES
+    		courseIndexes.put(nameColumnIndex, "namn");
+    		courseIndexes.put(pointsColumnIndex, "poäng");
     	}
 
     	String colNamesString = "";
@@ -117,29 +117,29 @@ public class KursSetupController {
     		colNamesString += " | " + courseIndexes.get(i);
     	}
     	colNamesString += " | ";
-    	exempelLabel.setText(colNamesString);
+    	exampleLabel.setText(colNamesString);
     }
     
     private boolean isInputValid() {
 
-    	if ((isNumber(kodTextfield.getText()) != -1 || kodCheckbox.isSelected()) &&
-    			(isNumber(namnTextfield.getText()) != -1 || namnCheckbox.isSelected()) &&
-    			(isNumber(poängTextfield.getText()) != -1 || poängCheckbox.isSelected())) {
+    	if ((isNumber(codeTextfield.getText()) != -1 || codeCheckbox.isSelected()) &&
+    			(isNumber(nameTextfield.getText()) != -1 || nameCheckbox.isSelected()) &&
+    			(isNumber(pointsTextfield.getText()) != -1 || pointsCheckbox.isSelected())) {
     		
-    		kodIndex = (kodCheckbox.isSelected()) ? -1 
-    				: (kodTextfield.getText().length() == 0) ? defaultkodIndex
-    				: Integer.parseInt(kodTextfield.getText());
-    		namnIndex = (namnCheckbox.isSelected()) ? -2 
-    				: (namnTextfield.getText().length() == 0) ? defaultNamnIndex
-    				: Integer.parseInt(namnTextfield.getText());
-    		poängIndex = (poängCheckbox.isSelected()) ? -3 
-    				: (poängTextfield.getText().length() == 0) ? defaultPoängIndex
-    				: Integer.parseInt(poängTextfield.getText());
+    		codeColumnIndex = (codeCheckbox.isSelected()) ? -1
+    				: (codeTextfield.getText().length() == 0) ? defaultCodeColumnIndex
+    				: Integer.parseInt(codeTextfield.getText());
+    		nameColumnIndex = (nameCheckbox.isSelected()) ? -2
+    				: (nameTextfield.getText().length() == 0) ? defaultNameColumnIndex
+    				: Integer.parseInt(nameTextfield.getText());
+    		pointsColumnIndex = (pointsCheckbox.isSelected()) ? -3
+    				: (pointsTextfield.getText().length() == 0) ? deafultPointsColumnIndex
+    				: Integer.parseInt(pointsTextfield.getText());
     		
     		numberOfColumnsUnwanted = 0;
-    		if (kodCheckbox.isSelected()) numberOfColumnsUnwanted++;
-    		if (namnCheckbox.isSelected()) numberOfColumnsUnwanted++;
-    		if (poängCheckbox.isSelected()) numberOfColumnsUnwanted++;
+    		if (codeCheckbox.isSelected()) numberOfColumnsUnwanted++;
+    		if (nameCheckbox.isSelected()) numberOfColumnsUnwanted++;
+    		if (pointsCheckbox.isSelected()) numberOfColumnsUnwanted++;
     		return true;
     	} else {
     		return false;
@@ -162,11 +162,11 @@ public class KursSetupController {
 			return -2;
 
 		if (Utils.isNumber(toBeParsed) == false) {
-			this.showAlert("Parsing fel, kolla siffrorna");
+			this.showAlert("Parsing error, check numbers");
 			return -1;
 		}
 		if (Double.parseDouble(toBeParsed) > Integer.MAX_VALUE) {
-			this.showAlert("Värde > Integer.MAX_VALUE");
+			this.showAlert("Value > Integer.MAX_VALUE");
 			return -1;
 		}
 

@@ -104,7 +104,7 @@ public class MainApp extends Application {
 		try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("KursSetup.fxml"));
+            loader.setLocation(MainApp.class.getResource("CourseSetup.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
 
             // Create the dialog Stage.
@@ -116,7 +116,7 @@ public class MainApp extends Application {
             dialogStage.setScene(scene);
 
             // Set the person into the controller.
-            KursSetupController kurssetcontroller = loader.getController();
+            CourseSetupController kurssetcontroller = loader.getController();
             kurssetcontroller.setDialogStage(dialogStage);
 
             // Show the dialog and wait until the user closes it
@@ -134,7 +134,7 @@ public class MainApp extends Application {
 		try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("LästSetup.fxml"));
+            loader.setLocation(MainApp.class.getResource("StudiedSetup.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
 
             // Create the dialog Stage.
@@ -146,7 +146,7 @@ public class MainApp extends Application {
             dialogStage.setScene(scene);
 
             // Set the person into the controller.
-            LästSetupController lästcontroller = loader.getController();
+            StudiedSetupController lästcontroller = loader.getController();
             lästcontroller.setDialogStage(dialogStage);
 
             // Show the dialog and wait until the user closes it
@@ -164,7 +164,7 @@ public class MainApp extends Application {
 		try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("LäserSetup.fxml"));
+            loader.setLocation(MainApp.class.getResource("StudyingSetup.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
 
             // Create the dialog Stage.
@@ -176,7 +176,7 @@ public class MainApp extends Application {
             dialogStage.setScene(scene);
 
             // Set the person into the controller.
-            LäserSetupController läsercontroller = loader.getController();
+            StudyingSetupController läsercontroller = loader.getController();
             läsercontroller.setDialogStage(dialogStage);
 
             // Show the dialog and wait until the user closes it
